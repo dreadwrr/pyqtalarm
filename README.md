@@ -15,8 +15,12 @@ in designer place a Widget where the clock should be it uses a bit of space. pro
 
 AlarmClock(parent=None, theme=None, _24hformat=True, sound_file=None, alarm_time="23:49")
 
+if no sound file will beep depending on platform
+alarm_time load saved alarm time in 24hr format
 theme can be "redblack", "red", "blue" or "black"
 
 functions for returning alarm time as string to save alarm time and change format
 
 ![Alt text](https://i.imgur.com/ZSf7fZI.png) <br>
+
+This was developed in windows but should be crossplatform. Will post updates here if I find anything and will also be testing on linux.
