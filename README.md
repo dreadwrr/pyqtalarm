@@ -1,5 +1,5 @@
 qtalarm qt alarm clock pyside python
-# pyside alarm clock 
+# Pyside alarm clock 
 
 PySide6 alarm clock in 24 hour plus seconds and 12 hour with blink. Has chrono and timer modes. Plays .wav, .mp3 or beep sounds. Custom logic and formatting redblack, red, blue or black.
 
@@ -12,4 +12,4 @@ AlarmClock(parent=None, theme=None, _24hformat=True, sound_file=None, alarm_time
 
 theme can be "redblack", "red", "blue" or "black"
 
-functions for returning alarm_time as string to save alarm time and set format later.
+functions for returning alarm time as string to save alarm time and change format
