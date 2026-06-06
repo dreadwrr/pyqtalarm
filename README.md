@@ -2,6 +2,8 @@ qtalarm qt alarm clock pyside python
 06/06/2026
 # Pyside alarm clock 
 
+This was developed in windows but should be crossplatform. Will post updates here if I find anything and will also be testing on linux.
+
 pyside6 alarm clock in 24 hour plus seconds and 12 hour with blink. 
 
 - Has chrono and timer modes.
@@ -19,8 +21,6 @@ if no sound file will beep depending on platform <br>
 alarm_time load saved alarm time in 24hr format <br>
 theme can be "redblack", "red", "blue" or "black" <br><br>
 
-functions for returning alarm time as string to save alarm time and change format
+functions for returning alarm time as string to save alarm time and change format <br><br>
 
 ![Alt text](https://i.imgur.com/ZSf7fZI.png) ![Alt text](https://i.imgur.com/EqF2tvP.png) <br>
-
-This was developed in windows but should be crossplatform. Will post updates here if I find anything and will also be testing on linux.
