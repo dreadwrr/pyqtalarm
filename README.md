@@ -7,8 +7,6 @@ pyside6 alarm clock in 24 hour plus seconds and 12 hour with blink.
 - Plays .wav, .mp3 or beep sounds.
 - Custom logic and formatting redblack, red, blue or black.
 
-![Alt text](https://i.imgur.com/ZSf7fZI.png) <br>
-
 clicking on the display hides the controls. I put in some custom logic and it took some time and didnt need to add much themes because it wouldnt do much to enhance the end result. Enjoy! let me know what you think.
 
 Instructions:
@@ -19,3 +17,5 @@ AlarmClock(parent=None, theme=None, _24hformat=True, sound_file=None, alarm_time
 theme can be "redblack", "red", "blue" or "black"
 
 functions for returning alarm time as string to save alarm time and change format
+
+![Alt text](https://i.imgur.com/ZSf7fZI.png) <br>
