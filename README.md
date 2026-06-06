@@ -1,7 +1,7 @@
 qtalarm qt alarm clock pyside python
 # Pyside alarm clock 
 
-PySide6 alarm clock in 24 hour plus seconds and 12 hour with blink. Has chrono and timer modes. Plays .wav, .mp3 or beep sounds. Custom logic and formatting redblack, red, blue or black.
+pyside6 alarm clock in 24 hour plus seconds and 12 hour with blink. Has chrono and timer modes. Plays .wav, .mp3 or beep sounds. Custom logic and formatting redblack, red, blue or black.
 
 clicking on the display hides the controls. I put in some custom logic and it took some time and didnt need to add much themes because it wouldnt do much to enhance the end result. Enjoy! let me know what you think.
 
