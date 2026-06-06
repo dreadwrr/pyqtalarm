@@ -1,4 +1,5 @@
 qtalarm qt alarm clock pyside python
+06/06/2026
 # Pyside alarm clock 
 
 pyside6 alarm clock in 24 hour plus seconds and 12 hour with blink. 
