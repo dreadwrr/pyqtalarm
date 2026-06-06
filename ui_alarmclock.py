@@ -23,12 +23,12 @@ class Ui_AlarmClock(object):
     def setupUi(self, AlarmClock):
         if not AlarmClock.objectName():
             AlarmClock.setObjectName(u"AlarmClock")
-        AlarmClock.resize(416, 138)
+        AlarmClock.resize(449, 186)
         self.gridLayoutWidget = QWidget(AlarmClock)
         self.gridLayoutWidget.setObjectName(u"gridLayoutWidget")
         self.gridLayoutWidget.setGeometry(QRect(9, 9, 383, 124))
         self.gridLayout = QGridLayout(self.gridLayoutWidget)
-        self.gridLayout.setSpacing(6)
+        self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setSizeConstraint(QLayout.SizeConstraint.SetMinAndMaxSize)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
@@ -147,11 +147,7 @@ class Ui_AlarmClock(object):
 
         self.gridLayout.addWidget(self.alarmb, 1, 1, 1, 1)
 
-        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout.addItem(self.horizontalSpacer_3, 2, 1, 1, 1)
-
-        self.horizontalSpacer_2 = QSpacerItem(75, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.horizontalSpacer_2 = QSpacerItem(79, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
 
         self.gridLayout.addItem(self.horizontalSpacer_2, 2, 3, 1, 1)
 
