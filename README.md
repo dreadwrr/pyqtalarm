@@ -21,6 +21,6 @@ theme can be "redblack", "red", "blue" or "black" <br><br>
 
 functions for returning alarm time as string to save alarm time and change format
 
-![Alt text](https://i.imgur.com/ZSf7fZI.png) <br>
+![Alt text](https://i.imgur.com/ZSf7fZI.png) ![Alt text](https://i.imgur.com/EqF2tvP.png) <br>
 
 This was developed in windows but should be crossplatform. Will post updates here if I find anything and will also be testing on linux.
