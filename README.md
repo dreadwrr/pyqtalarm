@@ -2,15 +2,15 @@ qtalarm qt alarm clock pyside python <br>
 06/06/2026
 # Pyside alarm clock 
 
-This was developed in windows but should be crossplatform. Will post updates here if I find anything and will also be testing on linux.
+This was created in windows but should be cross-platform. Will post updates here if find anything and will also after testing on linux.
 
 pyside6 alarm clock in 24 hour plus seconds and 12 hour with blink. 
 
 - Has chrono and timer
-- Plays .wav, .mp3 or beep sounds.
+- Alarm blinks and plays .wav, .mp3 or beep sounds.
 - Custom logic and formatting redblack, red, blue or black.
 
-clicking on the display hides the controls. I put in some custom logic and it took some time and didnt need to do too many themes since it wouldnt do much to enhance it. Enjoy! let me know what you think.
+clicking on the display hides the controls. I put in some logic and didnt need to do too many themes since it wouldnt do much to enhance it. Enjoy! let me know what you think.
 
 ## Instructions:
 in designer place a Widget where the clock should be it uses a bit of space. promote class to AlarmClock. or manually replace placerholder widget.
