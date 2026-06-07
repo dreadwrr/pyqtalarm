@@ -17,7 +17,7 @@ in designer place a Widget where the clock should be it uses a bit of space. pro
 
 AlarmClock(parent=None, theme=None, _24hformat=True, sound_file=None, alarm_time="23:49")
 
-if no sound file will beep depending on platform <br>
+if no sound file will beep differently depending on platform <br>
 alarm_time load saved alarm time in 24hr format <br>
 theme can be "redblack", "red", "blue" or "black" <br><br>
 
