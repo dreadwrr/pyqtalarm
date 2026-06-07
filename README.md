@@ -21,6 +21,6 @@ if no sound file will beep differently depending on platform <br>
 alarm_time load saved alarm time in 24hr format <br>
 theme can be "redblack", "red", "blue" or "black" <br><br>
 
-functions for returning alarm time as string to save alarm time and change format <br><br>
+functions for returning alarm time as string to save and to change from 24 or 12 clock or clock format <br><br>
 
 ![Alt text](https://i.imgur.com/ZSf7fZI.png) ![Alt text](https://i.imgur.com/EqF2tvP.png) <br>
