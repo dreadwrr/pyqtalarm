@@ -2,7 +2,7 @@ qtalarm qt alarm clock pyside python <br>
 06/06/2026
 # Pyside alarm clock 
 
-This was created in windows but should be cross-platform. Will post updates here if find anything and will also after testing on linux.
+This was created in windows but should be cross-platform. Will post updates here if find anything and also after testing on linux.
 
 pyside6 alarm clock in 24 hour plus seconds and 12 hour with blink. 
 
