@@ -579,7 +579,6 @@ class AlarmClock(QWidget):
                 self.ui.apmlabel.hide()
 
                 hour, _ = self.get_alarm_time()  # returns 24hr fmt
-                hour = int(hour)
 
             self.is_24h = _24hformat
             d = 8 if _24hformat else 5
@@ -589,15 +588,32 @@ class AlarmClock(QWidget):
                 self.display_clock()
 
     def convert_alarm_time(self, hour: int, _24hformat: bool) -> tuple[int, bool]:
-        """ reading back saved alarm set time in 24hr format and convert it based on using a 12 or 24hr clock """
+        """ used when switching clock from 24 to 12 or
+            reading back saved alarm set time in 24hr
+            format and convert it based on using a
+            12 or 24hr clock """
         is_am_pm = False
         if not _24hformat:
             is_am_pm = hour >= 12
             hour = (hour % 12) or 12
         return hour, is_am_pm
 
+    def get_alarm_time(self) -> tuple[int, int]:
+        """ used when switching clock from 12 to 24 or
+            for writing the alarm set time in 24hr fmt
+            to file """
+        hour = self.alarm_hour
+        if not self.is_24h:
+            if self.alarm_am_pm:
+                if self.alarm_hour < 12:
+                    hour = hour + 12
+            else:
+                if hour == 12:
+                    hour = 0
+        return hour, self.alarm_minute
+
     def set_alarm_time(self, alarm_time: str) -> int:
-        """ called in constructor or on app start. set the alarm time from 24hr format and convert it to 12hr if necessary """
+        """ called in constructor on app start if there is a saved alarm time from 24hr format and convert it to 12hr if necessary """
         parts = alarm_time.split(":")
         if len(parts) != 2:
             return 2
@@ -610,15 +626,3 @@ class AlarmClock(QWidget):
         hour, self.alarm_am_pm = self.convert_alarm_time(hour, self.is_24h)
         self.alarm_hour, self.alarm_minute = hour, minute
         return 0
-
-    def get_alarm_time(self) -> str:
-        """ for writing the alarm set time in 24hr format to file """
-        hour = self.alarm_hour
-        if not self.is_24h:
-            if self.alarm_am_pm:
-                if self.alarm_hour < 12:
-                    hour = hour + 12
-            else:
-                if hour == 12:
-                    hour = 0
-        return f"{hour:02d}", f"{self.alarm_minute:02d}"
