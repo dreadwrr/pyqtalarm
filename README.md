@@ -1,4 +1,4 @@
-qtalarm pyqt alarm clock pyside python <br>
+qtalarm alarm clock pyside python <br>
 06/08/2026
 # Pyside alarm clock 
 
