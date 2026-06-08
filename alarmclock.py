@@ -31,7 +31,7 @@ def linux_beep():
 
 class AlarmClock(QWidget):
 
-    def __init__(self, parent=None, theme=None, _24hformat=True, sound_file=None, alarm_time="23:49"):
+    def __init__(self, parent=None, theme=None, _24hformat=True, sound_file=None, alarm_time=None):
         super().__init__(parent)
 
         self.ui = Ui_AlarmClock()
@@ -109,18 +109,12 @@ class AlarmClock(QWidget):
 
         # alarm saved in 24 hour format parse to 12 hour if not 24h fmt
         if alarm_time:
-            parts = alarm_time.split(":")
-            if len(parts) != 2:
+
+            res = self.set_alarm_time(alarm_time)
+            if res == 2:
                 raise ValueError(f"Invalid alarm_time format: {alarm_time!r}, expected 'HH:mm'")
-            hour, minute = int(parts[0]), int(parts[1])
-
-            if not (0 <= hour <= 23 and 0 <= minute <= 59):
+            elif res == 3:
                 raise ValueError(f"alarm_time out of range: {alarm_time!r}")
-
-            # if using 12h clock set am_pm for alarm set time
-            hour, self.alarm_am_pm = self.convert_alarm_time(hour, _24hformat)
-
-            self.alarm_hour, self.alarm_minute = hour, minute
 
         self.alarm_triggered = False
         self.alarm_on = self.alarm_armed = False
@@ -572,14 +566,18 @@ class AlarmClock(QWidget):
         self.ui.lcdNumber.setPalette(palette)
 
     def set_clock_format(self, _24hformat):
+
         if self.is_24h != _24hformat:
 
             # 24 to 12
             if self.is_24h:
+
                 self.ui.apmlabel.show()
                 hour, self.alarm_am_pm = self.convert_alarm_time(self.alarm_hour, _24hformat)  # get the hour 1-12 and is it am or pm
+                self.ui.apmlabel.setText("PM" if self.am_pm else "AM")  # now = QTime.currentTime()
             else:
                 self.ui.apmlabel.hide()
+
                 hour, _ = self.get_alarm_time()  # returns 24hr fmt
                 hour = int(hour)
 
@@ -590,8 +588,31 @@ class AlarmClock(QWidget):
             if self.mode == "ALARM":
                 self.display_clock()
 
+    def convert_alarm_time(self, hour: int, _24hformat: bool) -> tuple[int, bool]:
+        """ reading back saved alarm set time in 24hr format and convert it based on using a 12 or 24hr clock """
+        is_am_pm = False
+        if not _24hformat:
+            is_am_pm = hour >= 12
+            hour = (hour % 12) or 12
+        return hour, is_am_pm
+
+    def set_alarm_time(self, alarm_time: str) -> int:
+        """ called in constructor or on app start. set the alarm time from 24hr format and convert it to 12hr if necessary """
+        parts = alarm_time.split(":")
+        if len(parts) != 2:
+            return 2
+        hour, minute = int(parts[0]), int(parts[1])
+
+        if not (0 <= hour <= 23 and 0 <= minute <= 59):
+            return 3
+
+        # if using 12h clock set am_pm for alarm set time
+        hour, self.alarm_am_pm = self.convert_alarm_time(hour, self.is_24h)
+        self.alarm_hour, self.alarm_minute = hour, minute
+        return 0
+
     def get_alarm_time(self) -> str:
-        """ for writing saved alarm set time returns in 24hr format to save to file """
+        """ for writing the alarm set time in 24hr format to file """
         hour = self.alarm_hour
         if not self.is_24h:
             if self.alarm_am_pm:
@@ -601,11 +622,3 @@ class AlarmClock(QWidget):
                 if hour == 12:
                     hour = 0
         return f"{hour:02d}", f"{self.alarm_minute:02d}"
-
-    def convert_alarm_time(self, hour, _24hformat) -> tuple[int, bool]:
-        """ reading back in 24hr format saved alarm set time and convert it based on using a 12 or 24hr clock """
-        is_am_pm = False
-        if not _24hformat:
-            is_am_pm = hour >= 12
-            hour = (hour % 12) or 12
-        return hour, is_am_pm
