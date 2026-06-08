@@ -1,5 +1,5 @@
-qtalarm qt alarm clock pyside python <br>
-06/06/2026
+qtalarm pyqt alarm clock pyside python <br>
+06/08/2026
 # Pyside alarm clock 
 
 This was created in windows but should be cross-platform. Will post updates here if find anything and also after testing on linux.
