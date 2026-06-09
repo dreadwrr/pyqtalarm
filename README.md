@@ -19,7 +19,7 @@ clicking on the display hides the controls. I put in some logic and didnt need t
 ## Instructions:
 in designer place a Widget where the clock should be it uses a bit of space. promote class to AlarmClock. or manually replace placerholder widget.
 
-AlarmClock(parent=None, theme=None, _24hformat=True, alarm_time="23:49", sound_file=None, sound_set_file=".\\Resources\\alarmt.mp3")
+AlarmClock(parent=None, theme=None, _24hformat=True, alarm_time="23:49", sound_file=None, sound_set_file=".\\Resources\\alarmt.ogg")
 
 if no sound file will beep differently depending on platform <br>
 alarm_time load saved alarm time in 24hr format <br>
