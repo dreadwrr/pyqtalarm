@@ -31,47 +31,60 @@ def linux_beep():
 
 class AlarmClock(QWidget):
 
-    def __init__(self, parent=None, theme=None, _24hformat=True, sound_file=None, alarm_time=None):
+    soundValidated = Signal(bool, bool, object)
+
+    def __init__(self, parent=None, theme=None, _24hformat=True, alarm_time=None, sound_file=None, sound_set_file=".\\Resources\\alarmt.mp3"):
         super().__init__(parent)
 
         self.ui = Ui_AlarmClock()
         self.ui.setupUi(self)
 
-        self.is_24h = _24hformat
-        self.sound_file = sound_file
+        # if needing only wav support and not needing to import QMediaPlayer
+        # self.player = QSoundEffect()
+        # self.player.setSource(QUrl.fromLocalFile("alarm.wav"))
+        # self.player.setLoopCount(QSoundEffect.Infinite)
+        # self.player.play()
+        # self.player.stop()
 
-        self.audio = None
-        self.player = None
-        self.beep = None
+        self.audio = QAudioOutput()
+        self.player = QMediaPlayer()
+        self.player.setAudioOutput(self.audio)
+        self.player.errorOccurred.connect(self.player_on_error)
+        self.player.mediaStatusChanged.connect(
+            self.media_status_changed
+        )
+        self.play_on_load = False
+
+        self.is_24h = _24hformat
+
+        self.sound_file = None
+        self.sound_set_file = None
+        self.new_source = None
+
+        self.valid_sound = self.is_set_sound = False
+
+        if sound_set_file:
+            if os.path.isfile(sound_set_file):
+                self.sound_set_file = sound_set_file
+            else:
+                print(f"could locate alarm set sound file: {sound_file}")
+        if sound_file:
+            if os.path.isfile(sound_file):
+                self.sound_file = sound_file
+
+            else:
+                print(f"could locate alarm sound file: {sound_file}. setting to beep")
+        # elif self.sound_set_file:
+
+        self.validate_sounds()
+
+        if platform.system() == "Windows":
+            self.beep = windows_beep
+        else:
+            self.beep = linux_beep
 
         self.am_pm = False
         self.mode_index = 0
-
-        if sound_file:
-            if os.path.isfile(sound_file):
-
-                # if needing only wav support not needing to import QMediaPlayer
-                # self.player = QSoundEffect()
-                # self.player.setSource(QUrl.fromLocalFile("alarm.wav"))
-                # self.player.setLoopCount(QSoundEffect.Infinite)
-                # self.player.play()
-                # self.player.stop()
-
-                self.audio = QAudioOutput()
-                self.player = QMediaPlayer()
-
-                # ".\\Resources\\alarm.mp3"
-                self.player.setAudioOutput(self.audio)
-                self.player.setSource(QUrl.fromLocalFile(sound_file))
-                self.player.setLoops(QMediaPlayer.Infinite)
-            else:
-                print("Couldnt find alarm sound file", sound_file, "alarm set to beep")
-
-        if not self.player:
-            if platform.system() == "Windows":
-                self.beep = windows_beep
-            else:
-                self.beep = linux_beep
 
         # setup lcd
         d = 5
@@ -467,6 +480,17 @@ class AlarmClock(QWidget):
 
     # Alarm
 
+    def validate_sounds(self):
+        self.new_source = None
+        self.is_set_sound = False
+
+        if not self.sound_file:
+            self.is_set_sound = True
+            if self.sound_set_file:
+                self.player.setSource(QUrl.fromLocalFile(self.sound_set_file))
+        else:
+            self.player.setSource(QUrl.fromLocalFile(self.sound_file))
+
     def trigger_alarm(self):
         self.timer.stop()
         self.ui.alarmb.show()
@@ -501,15 +525,18 @@ class AlarmClock(QWidget):
             self.ui.lcdNumber.display("      ")
 
     def alarm_play(self):
-        if self.player:
+
+        if self.valid_sound and self.sound_file:
+            self.is_set_sound = False
+            self.player.setLoops(QMediaPlayer.Infinite)
+            self.player.setSource(QUrl.fromLocalFile(self.sound_file))
             self.player.play()
-        elif self.beep:
+        else:
             self.beep()
 
     def alarm_stop(self):
         self.alarm_timer.stop()
-        if self.player:
-            self.player.stop()
+        self.player.stop()
         self.alarm_triggered = False
         self.alarm_armed = False
         self.alarm_on = False
@@ -525,6 +552,13 @@ class AlarmClock(QWidget):
     def alarm_set(self):
         self.blink_timer.stop()
         self.editing_alarm = False
+
+        ssf = self.sound_set_file
+        if ssf:
+            self.is_set_sound = True
+            self.player.setLoops(1)
+            self.player.setSource(QUrl.fromLocalFile(ssf))
+            self.player.play()
 
         self.alarm_on = True
         self.alarm_armed = False  # initial state and set later in display_clock
@@ -542,6 +576,71 @@ class AlarmClock(QWidget):
         self.display_crono()
 
     # general functions
+
+    def player_on_error(self, *args):
+        set_sound = self.is_set_sound
+
+        # an error occured use beeps instead
+        if not self.new_source:
+            if not set_sound:
+                self.valid_sound = False
+                # self.sound_file = None
+            else:
+                self.sound_set_file = None
+
+        self.soundValidated.emit(False, self.is_set_sound, self.new_source)
+
+        self.new_source = None
+        self.is_set_sound = None
+
+    def media_status_changed(self, status):
+        set_sound = self.is_set_sound
+
+        if status == QMediaPlayer.MediaStatus.LoadedMedia:
+
+            if self.new_source:
+
+                if not set_sound:
+                    self.sound_file = self.new_source
+                else:
+                    self.sound_set_file = self.new_source
+
+                self.soundValidated.emit(True, set_sound, self.new_source)
+            if not set_sound:
+                self.valid_sound = True  # valid alarm sound loaded
+
+            if not self.new_source and not set_sound and self.sound_set_file and not self.alarm_triggered:
+                self.is_set_sound = True
+                self.player.setSource(QUrl.fromLocalFile(self.sound_set_file))
+
+            self.new_source = None
+            self.is_set_sound = None
+
+        elif status == QMediaPlayer.MediaStatus.InvalidMedia:
+
+            # if its from init invalidate and use beeps
+            if not self.new_source:
+                self.valid_sound = False
+
+            self.soundValidated.emit(False, self.is_set_sound, self.new_source)
+
+            self.new_source = None
+            self.is_set_sound = None
+
+    def change_alarm_sound(self, sound_file, is_set_sound):
+
+        if os.path.isfile(sound_file):
+            self.is_set_sound = is_set_sound
+            self.new_source = sound_file
+            self.player.setSource(QUrl.fromLocalFile(sound_file))
+            return True
+
+        print(
+            "Couldnt find alarm "
+            "set" if is_set_sound else ""
+            "sound file", sound_file, "alarm set to beep"
+        )
+        return False
 
     def set_format(self, theme):
         if not theme:
@@ -613,7 +712,7 @@ class AlarmClock(QWidget):
         return hour, self.alarm_minute
 
     def set_alarm_time(self, alarm_time: str) -> int:
-        """ called in constructor on app start if there is a saved alarm time from 24hr format and convert it to 12hr if necessary """
+        """ called in constructor on app start if there is a saved alarm time in 24hr format and convert it to 12hr if necessary """
         parts = alarm_time.split(":")
         if len(parts) != 2:
             return 2
