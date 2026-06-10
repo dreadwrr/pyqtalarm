@@ -33,7 +33,7 @@ class AlarmClock(QWidget):
 
     soundValidated = Signal(bool, bool, object)
 
-    def __init__(self, parent=None, theme=None, _24hformat=True, alarm_time=None, sound_file=None, sound_set_file=".\\Resources\\alarmt.mp3"):
+    def __init__(self, parent=None, theme=None, _24hformat=True, alarm_time=None, sound_file=None, sound_set_file=".\\Resources\\alarmt.ogg"):
         super().__init__(parent)
 
         self.ui = Ui_AlarmClock()
@@ -69,12 +69,12 @@ class AlarmClock(QWidget):
             else:
                 print(f"could locate alarm set sound file: {sound_file}")
         if sound_file:
-            if os.path.isfile(sound_file):
+            ext = os.path.splitext(sound_file)[1].lower()
+            if ext in (".wav", ".mp3", ".ogg") and os.path.isfile(sound_file):
                 self.sound_file = sound_file
 
             else:
                 print(f"could locate alarm sound file: {sound_file}. setting to beep")
-        # elif self.sound_set_file:
 
         self.validate_sounds()
 
@@ -584,7 +584,7 @@ class AlarmClock(QWidget):
         if not self.new_source:
             if not set_sound:
                 self.valid_sound = False
-                # self.sound_file = None
+
             else:
                 self.sound_set_file = None
 
@@ -636,9 +636,9 @@ class AlarmClock(QWidget):
             return True
 
         print(
-            "Couldnt find alarm "
-            "set" if is_set_sound else ""
-            "sound file", sound_file, "alarm set to beep"
+            f"Couldnt find alarm {'set ' if is_set_sound else ''}sound file",
+            sound_file,
+            "alarm set to beep",
         )
         return False
 
@@ -698,9 +698,7 @@ class AlarmClock(QWidget):
         return hour, is_am_pm
 
     def get_alarm_time(self) -> tuple[int, int]:
-        """ used when switching clock from 12 to 24 or
-            for writing the alarm set time in 24hr fmt
-            to file """
+        """ used when switching clock from 12 to 24 or writing the alarm set time in 24hr fmt to file """
         hour = self.alarm_hour
         if not self.is_24h:
             if self.alarm_am_pm:
