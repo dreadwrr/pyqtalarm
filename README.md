@@ -1,9 +1,8 @@
 qtalarm alarm clock pyside python <br>
-06/08/2026
+06/09/2026
 # Pyside alarm clock 
 
 Upcoming updates. <br>
-Plan to include default alarm in folder /Resources/alarm.mp3 as well as alarm set sound like an inverter sound. <br>
 Test on linux next which should be done soon <br><br>
 
 This was created in windows but should be cross-platform. Will post updates here if find anything and also after testing on linux.
