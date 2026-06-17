@@ -1,9 +1,9 @@
 qtalarm alarm clock pyside python <br>
-06/09/2026
+06/17/2026
 # Pyside alarm clock 
 
 Upcoming updates. <br>
-Test on linux next which should be done soon <br><br>
+Test on windows and linux <br><br>
 
 This was created in windows but should be cross-platform. Will post updates here if find anything and also after testing on linux.
 
@@ -18,11 +18,11 @@ clicking on the display hides the controls. I put in some logic and didnt need t
 ## Instructions:
 in designer place a Widget where the clock should be it uses a bit of space. promote class to AlarmClock. or manually replace placerholder widget.
 
-AlarmClock(parent=None, theme=None, _24hformat=True, alarm_time="23:49", sound_file=None, sound_set_file=".\\Resources\\alarmt.ogg")
+AlarmClock(parent=None, theme=None, _24hformat=True, alarm_time="23:49", sound_file=None, sound_set_file=None, beep_file=None)
 
 if no sound file will beep differently depending on platform <br>
 alarm_time load saved alarm time in 24hr format <br>
-theme can be "redblack", "red", "blue" or "black" <br><br>
+theme can be "redblack", "red", "blue" or "black" or "" to reset <br><br>
 
 functions for returning alarm time as string to save and to change from 24 or 12 clock or clock color <br><br>
 
