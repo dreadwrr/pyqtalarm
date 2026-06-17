@@ -7,7 +7,7 @@ Test on windows and linux <br><br>
 pyside6 alarm clock in 24 hour plus seconds and 12 hour with blink. 
 
 - Has chrono and timer
-- Alarm blinks and plays .wav, .mp3 or beep sounds.
+- Alarm blinks and plays .wav, .mp3, .ogg or beep sounds.
 - Custom logic and formatting redblack, red, blue or black.
 
 clicking on the display hides the controls. I put in some logic and didnt need to do too many themes since it wouldnt do much to enhance it. Enjoy! let me know what you think.
