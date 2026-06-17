@@ -2,7 +2,6 @@ qtalarm alarm clock pyside python <br>
 06/17/2026
 # Pyside alarm clock 
 
-Upcoming updates. <br>
 Test on windows and linux <br><br>
 
 This was created in windows but should be cross-platform. Will post updates here if find anything and also after testing on linux.
