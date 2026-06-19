@@ -687,10 +687,19 @@ class AlarmClock(QWidget):
         return False
 
     def set_format(self, theme):
-        self.ui.lcdNumber.setStyleSheet("")
-        self.ui.lcdNumber.setPalette(self.style().standardPalette())
-        if not theme:
-            return
+
+        if platform.system() == "Windows":
+            # self.ui.lcdNumber.setPalette(self.style().standardPalette())
+            if not theme:
+                if theme is not None:
+                    self.ui.lcdNumber.setStyleSheet("")
+                return
+        else:
+            self.ui.lcdNumber.setStyleSheet("")
+            self.ui.lcdNumber.setPalette(self.style().standardPalette())
+            if not theme:
+                return
+
         palette = self.ui.lcdNumber.palette()
         if theme == "redblack":
             self.ui.lcdNumber.setStyleSheet("background-color: black; border: 1px solid #330000;")
