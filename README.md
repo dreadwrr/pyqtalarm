@@ -2,7 +2,7 @@ qt alarm clock pyside python <br>
 06/19/2026
 # Pyside alarm clock 
 
-Test on windows and linux <br><br>
+Tested on windows and linux <br><br>
 
 pyside6 alarm clock in 24 hour plus seconds and 12 hour with blink. 
 
