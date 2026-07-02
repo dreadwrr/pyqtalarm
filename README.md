@@ -2,7 +2,8 @@ see also qt ![pycalculator](https://github.com/dreadwrr/pycalculator/)
 
 # pyalarmclock
 06/19/2026 <br><br>
-Tested on windows and linux <br><br>
+Tested on windows and linux. both pycalculator and pyalarmclock will be updated from my main application as any problems are <br>
+identified <br><br>
 
 pyside6 alarm clock in 24 hour plus seconds and 12 hour with blink. 
 
