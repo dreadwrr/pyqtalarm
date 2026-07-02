@@ -1,4 +1,4 @@
-alarm clock python pyside6 <br>
+alarm clock python in pyside6 <br>
 see also qt ![pycalculator](https://github.com/dreadwrr/pycalculator/)
 
 06/19/2026
