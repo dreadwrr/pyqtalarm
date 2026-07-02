@@ -42,6 +42,6 @@ if not promoted in designer use a widget and later
     layout.addWidget(self.ui.widget, *position)
 ```
 
-functions for returning alarm time as string to save and to change from 24 or 12 clock or clock color <br><br>
+also functions for returning alarm time as string to save and to change from 24 or 12 clock or clock color <br><br>
 
 ![Alt text](https://i.imgur.com/ZSf7fZI.png) ![Alt text](https://i.imgur.com/EqF2tvP.png) <br>
