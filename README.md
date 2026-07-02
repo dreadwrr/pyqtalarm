@@ -1,5 +1,5 @@
-qt alarm clock pyside python <br>
-see also pyside ![alarm clock](https://github.com/dreadwrr/pycalculator/)
+qt alarm clock python <br>
+see also pyside ![pycalculator](https://github.com/dreadwrr/pycalculator/)
 
 06/19/2026
 # Pyside alarm clock 
