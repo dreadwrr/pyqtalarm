@@ -1,7 +1,6 @@
-alarm clock python for pyside6 <br>
 see also qt ![pycalculator](https://github.com/dreadwrr/pycalculator/)
 
-# Pyside alarm clock 
+# pyalarmclock
 06/19/2026 <br><br>
 Tested on windows and linux <br><br>
 
