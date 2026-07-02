@@ -16,8 +16,6 @@ clicking on the display hides the controls. I put in some logic and didnt need t
 ## Instructions:
 in designer place a Widget where the clock should be it uses a bit of space. promote class to AlarmClock. or manually replace placerholder widget.
 
-AlarmClock(parent=None, theme=None, _24hformat=True, alarm_time="23:49", sound_file=None, sound_set_file=None, beep_file=None)
-
 if no sound file will beep differently depending on platform <br>
 alarm_time load saved alarm time in 24hr format <br>
 theme can be "redblack", "red", "blue" or "black" or "" to reset <br><br>
@@ -37,7 +35,7 @@ theme can be "redblack", "red", "blue" or "black" or "" to reset <br><br>
 
         if self.alarmCOLOR == "":
             self.alarmCOLOR = None
-        self.ui.widget = AlarmClock(self, theme=self.alarmCOLOR, _24hformat=self.alarm_24h, sound_file=sound_path, sound_set_file=sound_set_path)
+        self.ui.widget = AlarmClock(parent=self, theme="red", _24hformat=False, alarm_time="23:49", sound_file=sound_path, sound_set_file=sound_set_path)
 
         # self.ui.widget.setMinimumSize(QSize(50, 50))
         # self.ui.widget.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
