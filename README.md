@@ -2,7 +2,7 @@ alarm clock python in pyside6 <br>
 see also qt ![pycalculator](https://github.com/dreadwrr/pycalculator/)
 
 # Pyside alarm clock 
-06/19/2026
+06/19/2026 <br>
 Tested on windows and linux <br><br>
 
 pyside6 alarm clock in 24 hour plus seconds and 12 hour with blink. 
