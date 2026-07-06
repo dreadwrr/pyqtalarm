@@ -1,4 +1,4 @@
-see also qt ![pycalculator](https://github.com/dreadwrr/pycalculator/)
+see also qt [pycalculator](https://github.com/dreadwrr/pycalculator/)
 
 # pyalarmclock
 06/19/2026 <br><br>
