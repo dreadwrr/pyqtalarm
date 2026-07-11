@@ -1,6 +1,8 @@
 see also qt [pycalculator](https://github.com/dreadwrr/pycalculator/)
 
 # pyalarmclock
+07/11/2025 <br><br>
+changed set_format to restore proper default color if changing back from a set theme <br><br>
 06/19/2026 <br><br>
 Tested on windows and linux. both pycalculator and pyalarmclock will be updated from my main application as any problems are
 identified <br><br>
