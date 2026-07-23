@@ -1,11 +1,14 @@
 see also qt [pycalculator](https://github.com/dreadwrr/pycalculator/)
 
 # pyalarmclock
+will be updated from my main application as any problems are identified <br><br>
+07/23/2026
+Added green on dark background and will post update as soon as its tested on both linux and windows
+
 07/11/2025 <br><br>
 changed set_format to restore proper default color if changing back from a set theme <br><br>
 06/19/2026 <br><br>
-Tested on windows and linux. both pycalculator and pyalarmclock will be updated from my main application as any problems are
-identified <br><br>
+Tested on windows and linux
 
 pyside6 alarm clock in 24 hour plus seconds and 12 hour with blink. 
 
