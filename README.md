@@ -2,9 +2,8 @@ see also qt [pycalculator](https://github.com/dreadwrr/pycalculator/)
 
 # pyalarmclock
 will be updated from my main application as any problems are identified <br><br>
-07/23/2026 <br>
-Added green on dark background and will post update as soon as its tested on both linux and windows
-
+07/24/2026 <br>
+Added green on dark background
 07/11/2025 <br>
 changed set_format to restore proper default color if changing back from a set theme <br><br>
 06/19/2026 <br>
