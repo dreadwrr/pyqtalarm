@@ -45,6 +45,8 @@ if not promoted in designer use a widget and later
     # self.ui.widget.setMinimumSize(QSize(50, 50))
     # self.ui.widget.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
     layout.addWidget(self.ui.widget, *position)
+    self.ui.widget.setMinimumSize(QSize(539, 128))
+    self.ui.widget.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
 ```
 
 also functions for returning alarm time as string to save and to change from 24 or 12 clock or clock color <br><br>
