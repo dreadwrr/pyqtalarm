@@ -1,6 +1,7 @@
 see also qt [pycalculator](https://github.com/dreadwrr/pycalculator/)
 
 # pyalarmclock
+10/14/2026
 will be updated from my main application as any problems are identified
 Tested on windows and linux<br>
 
@@ -53,4 +54,3 @@ fixed inconsistent position when buttons are shown
 Added green on black background for windows and no background linux<br>
 07/11/2025<br>
 changed set_format to restore proper default color if changing back from a set theme<br>
-06/19/2026<br>
