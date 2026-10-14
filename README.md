@@ -1,7 +1,7 @@
 see also qt [pycalculator](https://github.com/dreadwrr/pycalculator/)
 
 # pyalarmclock
-10/14/2026
+10/14/2026<br>
 will be updated from my main application as any problems are identified
 Tested on windows and linux<br>
 
