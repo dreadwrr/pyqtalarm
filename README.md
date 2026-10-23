@@ -49,7 +49,7 @@ also functions for returning alarm time as string to save and to change from 24 
 ![Alt text](https://i.imgur.com/ZSf7fZI.png) ![Alt text](https://i.imgur.com/EqF2tvP.png) <br>
 
 10/14/2026<br>
-fixed inconsistent position when buttons are shown
+fixed inconsistent position when buttons are shown <br>
 07/24/2026<br>
 Added green on black background for windows and no background linux<br>
 07/11/2025<br>
